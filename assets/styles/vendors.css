@@ -3446,6 +3446,10 @@ input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: #cacaca; }
 
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder {
+  color: #cacaca; }
+
 input::placeholder,
 textarea::placeholder {
   color: #cacaca; }
@@ -3649,6 +3653,8 @@ select {
   .is-invalid-input:not(:focus)::-webkit-input-placeholder {
     color: #cc4b37; }
   .is-invalid-input:not(:focus):-ms-input-placeholder {
+    color: #cc4b37; }
+  .is-invalid-input:not(:focus)::-ms-input-placeholder {
     color: #cc4b37; }
   .is-invalid-input:not(:focus)::placeholder {
     color: #cc4b37; }
@@ -6227,7 +6233,9 @@ table {
   width: 100%;
   margin-bottom: 1rem;
   border-radius: 0; }
-  thead, tbody, tfoot {
+  thead,
+  tbody,
+  tfoot {
     border: 1px solid #f1f1f1;
     background-color: #fefefe; }
   caption {
@@ -6239,13 +6247,18 @@ table {
   tfoot {
     background: #f1f1f1;
     color: #0a0a0a; }
-  thead tr, tfoot tr {
+  thead tr,
+  tfoot tr {
     background: transparent; }
-  thead th, thead td, tfoot th, tfoot td {
+  thead th,
+  thead td,
+  tfoot th,
+  tfoot td {
     padding: 0.5rem 0.625rem 0.625rem;
     font-weight: bold;
     text-align: left; }
-  tbody th, tbody td {
+  tbody th,
+  tbody td {
     padding: 0.5rem 0.625rem 0.625rem; }
   tbody tr:nth-child(even) {
     border-bottom: 0;

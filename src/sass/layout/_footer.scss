@@ -4,14 +4,14 @@
 
 .site-footer {
 
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 
 	.textwidget, p {
 		color: $secondaryColor;
 		font-size: 0.875rem;
 	}
-	
+
 	&.gray {
 		background: $grayColor;
 	}
@@ -19,7 +19,7 @@
 	&.black {
 		background: $blackColor;
 	}
-	
+
 	h4 {
 		border-bottom: 1px solid $borderColor;
 		text-transform: uppercase;
@@ -32,7 +32,7 @@
 
 	.menu li {
 		display: block;
-		
+
 		a {
 			color: $secondaryColor;
 			margin: 0 0 10px 0;

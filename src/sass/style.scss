@@ -108,17 +108,17 @@ Last Update: 08/09/2017 (d/m/y);
 
 //	If you have page-specific styles, it is better to put them in a pages/ folder, in a file named after the page.
 
-	
+
 	//@import 'page/contact.scss';
-	
+
 	/* Motion ui Transitions */
 	@include motion-ui-transitions;
 
 	/* Motion ui Animations */
-	@include motion-ui-animations; 
+	@include motion-ui-animations;
 
 // Plugins
 
-	@import 'plugins/fresco.scss';
-	@import 'plugins/woocommerce.scss';
+	// @import 'plugins/fresco.scss';
+	// @import 'plugins/woocommerce.scss';
 

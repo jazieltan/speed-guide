@@ -1,5 +1,5 @@
-  /**
-   *  gulpfile.js 
+/**
+   *  gulpfile.js
    *  Author                      : Valeriu Tihai
    *
    *  Available tasks:
@@ -27,131 +27,180 @@
    *   gulp-rename                : Provides simple file renaming methods
    *   gulp-rigger                : Include any type of text file (css, js, hmtl)
    *   gulp-combine-mq            : Combine matching media queries into one media query definition
-   *   gulp-plumber               : Briefly it replaces pipe method and removes standard onerror 
+   *   gulp-plumber               : Briefly it replaces pipe method and removes standard onerror
                                     handler on error event, which unpipes streams on error by default.
    */
 
 // include gulp and gulp plug-ins
-var gulp = require('gulp'),
-    autoprefixer = require('gulp-autoprefixer'),
-    cache = require('gulp-cache'),
-    //cmq = require('gulp-combine-mq'),
-    concat = require('gulp-concat'),
-    del = require('del'),
-    jshint = require('gulp-jshint'),
-    cleancss = require('gulp-clean-css'),
-    notify = require('gulp-notify'),
-    plumber = require('gulp-plumber'),
-    rename = require('gulp-rename'),
-    rigger = require('gulp-rigger'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
-    uglify = require('gulp-uglify');
+var gulp = require("gulp"),
+  autoprefixer = require("gulp-autoprefixer"),
+  cache = require("gulp-cache"),
+  //cmq = require('gulp-combine-mq'),
+  concat = require("gulp-concat"),
+  del = require("del"),
+  jshint = require("gulp-jshint"),
+  cleancss = require("gulp-clean-css"),
+  notify = require("gulp-notify"),
+  plumber = require("gulp-plumber"),
+  rename = require("gulp-rename"),
+  rigger = require("gulp-rigger"),
+  sass = require("gulp-sass"),
+  sourcemaps = require("gulp-sourcemaps"),
+  uglify = require("gulp-uglify"),
+  browserSync = require("browser-sync");
 
 var autoprefixerOptions = {
-  browsers: ['last 2 version']
+  browsers: ["last 2 version"]
 };
 
-
 var paths = {
-     home: './',
-     assets_css: './assets/styles/',
-     assets_js: './assets/javascripts/',
-     assets_font: './assets/fonts/',
-     src_css_fe: './src/sass/',
-     src_js: './src/javascripts/',
-     node_libs: ['./node_modules/foundation-sites/scss/', './node_modules/motion-ui/src'],
-    };
+  home: "./",
+  assets_css: "./assets/styles/",
+  assets_js: "./assets/javascripts/",
+  assets_font: "./assets/fonts/",
+  src_css_fe: "./src/sass/",
+  src_js: "./src/javascripts/",
+  node_libs: [
+    "./node_modules/foundation-sites/scss/",
+    "./node_modules/motion-ui/src"
+  ]
+};
 
 var onError = function(err) {
-         console.log(err);
-    }
+  console.log(err);
+};
 
- // Vendors, Admin CSS
-gulp.task('styles:v', function() {
-  return gulp.src([ paths.src_css_fe + 'vendors.scss'])
-    .pipe(plumber({errorHandler: onError}))
+// Vendors, Admin CSS
+gulp.task("styles:v", function() {
+  return gulp
+    .src([paths.src_css_fe + "vendors.scss"])
+    .pipe(plumber({ errorHandler: onError }))
     .pipe(sourcemaps.init())
-    .pipe(sass({ includePaths : paths.node_libs, style: 'expanded', errLogToConsole: true }))
+    .pipe(
+      sass({
+        includePaths: paths.node_libs,
+        style: "expanded",
+        errLogToConsole: true
+      })
+    )
     .pipe(autoprefixer(autoprefixerOptions))
     .pipe(gulp.dest(paths.assets_css))
-    .pipe(rename({ suffix: '.min' }))
+    .pipe(rename({ suffix: ".min" }))
     .pipe(cleancss())
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(paths.assets_css))
-    .pipe(notify({ message: 'Styles task complete: <%= file.relative %>!' }));
+    .pipe(notify({ message: "Styles task complete: <%= file.relative %>!" }));
 });
 
- // Main CSS
-gulp.task('styles', function() {
-  return gulp.src([paths.src_css_fe + 'style.scss'])
-    .pipe(plumber({errorHandler: onError}))
-    .pipe(sourcemaps.init())
-    .pipe(sass({ includePaths : paths.node_libs, style: 'expanded', errLogToConsole: true }))
-    .pipe(autoprefixer(autoprefixerOptions))
-    //.pipe(cleancss())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.home))
-    .pipe(notify({ message: 'Styles task complete: <%= file.relative %>!' }));
+// Main CSS
+gulp.task("styles", function() {
+  return (
+    gulp
+      .src([paths.src_css_fe + "style.scss"])
+      .pipe(plumber({ errorHandler: onError }))
+      .pipe(sourcemaps.init())
+      .pipe(
+        sass({
+          includePaths: paths.node_libs,
+          style: "expanded",
+          errLogToConsole: true
+        })
+      )
+      .pipe(autoprefixer(autoprefixerOptions))
+      //.pipe(cleancss())
+      .pipe(sourcemaps.write("."))
+      .pipe(gulp.dest(paths.home))
+      .pipe(
+        browserSync.reload({
+          stream: true
+        })
+      )
+      .pipe(notify({ message: "Styles task complete: <%= file.relative %>!" }))
+  );
 });
 
 // Scripts
-gulp.task('scripts', function() {
-  return gulp.src( paths.src_js + '*.js')
+gulp.task("scripts", function() {
+  return gulp
+    .src(paths.src_js + "*.js")
     .pipe(rigger())
     .pipe(gulp.dest(paths.assets_js))
-    .pipe(rename({ suffix: '.min' }))
+    .pipe(rename({ suffix: ".min" }))
     .pipe(uglify())
     .pipe(gulp.dest(paths.assets_js))
-    .pipe(notify({ message: 'Scripts task complete: <%= file.relative %>!' }));
+    .pipe(notify({ message: "Scripts task complete: <%= file.relative %>!" }));
 });
 
-
-gulp.task('copyfonts', function () {
-    return gulp.src('./node_modules/font-awesome/fonts/*')
-      .pipe(gulp.dest(paths.assets_font))
-      .pipe(notify({ message: 'Copy Fonts: <%= file.relative %>!' }));
+gulp.task("copyfonts", function() {
+  return gulp
+    .src("./node_modules/font-awesome/fonts/*")
+    .pipe(gulp.dest(paths.assets_font))
+    .pipe(notify({ message: "Copy Fonts: <%= file.relative %>!" }));
 });
 
-gulp.task('copyjs', function () {
-    return gulp.src([
-        './node_modules/foundation-sites/dist/js/foundation.min.js',
-        './node_modules/owl.carousel/dist/owl.carousel.min.js',
-        './node_modules/jquery/dist/jquery.min.js',
-        //'./node_modules/waypoints/lib/jquery.waypoints.min.js',
-        './node_modules/headroom.js/dist/headroom.min.js',
-        './node_modules/headroom.js/dist/jQuery.headroom.min.js',
-        './node_modules/vivus/dist/vivus.min.js',
-        './node_modules/typed.js/lib/typed.min.js',
-        './node_modules/typed.js/lib/typed.min.js.map',
-        './node_modules/particles.js/particles.js'
-
-      ])
-      .pipe(gulp.dest(paths.assets_js))
-      .pipe(notify({ message: 'Copy JavaScripts: <%= file.relative %>!' }));
+gulp.task("copyjs", function() {
+  return gulp
+    .src([
+      "./node_modules/foundation-sites/dist/js/foundation.min.js",
+      "./node_modules/owl.carousel/dist/owl.carousel.min.js",
+      "./node_modules/jquery/dist/jquery.min.js",
+      //'./node_modules/waypoints/lib/jquery.waypoints.min.js',
+      "./node_modules/headroom.js/dist/headroom.min.js",
+      "./node_modules/headroom.js/dist/jQuery.headroom.min.js",
+      "./node_modules/vivus/dist/vivus.min.js",
+      "./node_modules/typed.js/lib/typed.min.js",
+      "./node_modules/typed.js/lib/typed.min.js.map",
+      "./node_modules/particles.js/particles.js"
+    ])
+    .pipe(gulp.dest(paths.assets_js))
+    .pipe(notify({ message: "Copy JavaScripts: <%= file.relative %>!" }));
 });
 
 // Clean
-gulp.task('clean', function(cb) {
-    del([ paths.assets_font + '*', paths.assets_css + '*', paths.assets_js + '*', paths.home + 'style.+(css|css.map)'], {force: true}, cb)
+gulp.task("clean", function(cb) {
+  del(
+    [
+      paths.assets_font + "*",
+      paths.assets_css + "*",
+      paths.assets_js + "*",
+      paths.home + "style.+(css|css.map)"
+    ],
+    { force: true },
+    cb
+  );
+});
+
+gulp.task("browserSync", function() {
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }
+  });
 });
 
 // Default task
-gulp.task('default', [ 'clean', 'styles:v', 'styles', 'scripts', 'copyfonts', 'copyjs'], function() {
-    gulp.start('styles', 'scripts');
-});
+gulp.task(
+  "default",
+  ["clean", "styles:v", "styles", "scripts", "copyfonts", "copyjs"],
+  function() {
+    gulp.start("styles", "scripts");
+  }
+);
 
 // Watch
-gulp.task('watch', function() {
-
+gulp.task("watch", ["browserSync"], function() {
   // Watch .scss files
-  gulp.watch([ paths.src_css_fe + '**/*.scss'], ['styles:v', 'styles']);
+  gulp.watch([paths.src_css_fe + "**/*.scss"], ["styles:v", "styles"]);
   // gulp.watch([ paths.src_css_fe + 'style.scss'], ['styles']);
 
+  // watch .html files
+  gulp.watch([paths.home + "*.html"], browserSync.reload);
+
   // Watch gulpfile files
-  gulp.watch('gulpfile.js', ['styles', 'styles:v', 'scripts', 'copyfonts', 'copyjs']);
+  gulp.watch(
+    "gulpfile.js",
+    ["styles", "styles:v", "scripts", "copyfonts", "copyjs"]);
 
   // Watch .js files
-  gulp.watch( paths.src_js + '*.js', ['scripts']);
-
+  gulp.watch(paths.src_js + "*.js", ["scripts"], browserSync.reload);
 });

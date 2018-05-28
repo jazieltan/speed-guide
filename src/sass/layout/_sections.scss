@@ -32,9 +32,13 @@ section {
 
 	.section-head {
 		padding: 0 0 40px 0;
+			@include breakpoint(large){
+				max-width: 80%;
+				margin: 0 auto;
+				}
 		.section-title {
 			margin-top: 0;
-		}
+			}
 	}
 
 	.section-body {
@@ -46,6 +50,9 @@ section {
 	}
 
 	.white-color {
+			h1,h2{
+				color: $whiteColor;
+			}
 		.section-title {
 			color: $whiteColor;
 		}
@@ -57,8 +64,12 @@ section {
 		}
 	}
 
-	&.gray {
-		background: $grayColor;
+	&.red {
+		background: $primaryColor;
+		color: $whiteColor;
+		p{
+			color: $whiteColor;
+		}
 	}
 }
 
@@ -70,7 +81,7 @@ section {
 section.sponsor {
 	.owl-carousel-sponsor {
 		figure {
-			padding: 30px;
+			padding: 3px;
 		}
 
 		.hidden {
@@ -89,13 +100,13 @@ section.sponsor {
 }
 
 section.donate-slider{
-	
+
 
 	.top-negative {
 		margin-top: -200px;
 		margin-bottom: 100px;
 	}
-	
+
 	.stat {
 		margin-top: 60px;
 		font-family: $FontPrimary;
@@ -127,7 +138,7 @@ section.donate-slider{
 
 	#dot-0 {
 		left: -2px;
-		&.full { 
+		&.full {
 			border-color: #685fd8;
 
 		}
@@ -137,7 +148,7 @@ section.donate-slider{
 		left: 25%;
 		@include mui-animation(fade);
 		transition-duration: 0.5s;
-		&.full { 
+		&.full {
 			border-color: #8a56bf;
 			@include mui-animation(fade);
 			transition-duration: 0.5s;
@@ -148,7 +159,7 @@ section.donate-slider{
 		left: 49%;
 		@include mui-animation(fade);
 		transition-duration: 0.5s;
-		&.full { 
+		&.full {
 			border-color: #a94da6;
 			@include mui-animation(fade);
 			transition-duration: 0.5s;
@@ -159,7 +170,7 @@ section.donate-slider{
 		left: 74%;
 		@include mui-animation(fade);
 		transition-duration: 0.5s;
-		&.full { 
+		&.full {
 			border-color: #cb468e;
 			@include mui-animation(fade);
 			transition-duration: 0.5s;
@@ -170,7 +181,7 @@ section.donate-slider{
 		right: -1px;
 		@include mui-animation(fade);
 		transition-duration: 0.5s;
-		&.full { 
+		&.full {
 			border-color: #e73f78;
 			@include mui-animation(fade);
 			transition-duration: 0.5s;
@@ -204,7 +215,7 @@ section.donate-slider{
 
 
 /* ==========================================================================
-/* ===== Book Appointment Section ===== */
+/* ===== Contact Section ===== */
 /*========================================================================== */
 
 section.book-appointment {
@@ -258,7 +269,17 @@ section.book-appointment {
 	&.gray {
 		background: $grayColor;
 	}
+	.contact-info{
+		h4:after{
+				margin: 9px 0;
+				width: 30%;
+				display: block;
+				content: '';
+				border-bottom: 1px solid $primaryColor;
+			}
+	}
 }
+
 
 
 /* ==========================================================================
@@ -377,8 +398,10 @@ section.action-bar {
 /* ===== Key Benefits Section ===== */
 /*========================================================================== */
 
-section.key-benefits {
-	
+section.services {
+	.desc{
+		margin-top: 15vh;
+	}
 	.benefit {
 		padding: 20px;
 		h3 {
@@ -394,34 +417,9 @@ section.key-benefits {
 			p,ul {
 				color: #fff;
 			}
-
-			svg { 
-				
-			}
 		}
 	}
 
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
 	&.gray {
 		background: $grayColor;
 	}
@@ -440,6 +438,9 @@ section.key-benefits {
 		.button {
 			 margin: 20px  0 0 0;
 		}
+	}
+	.feat{
+		padding-top: 4rem;
 	}
 }
 
@@ -462,12 +463,19 @@ section.price {
 			}
 		}
 	}
+	.price-box.gray{
+		background: $grayColor;
+	}
 
 	.pricing-table {
-		text-align: center;
 		list-style: none;
 		padding: 25px 0;
 		margin: 0;
+		.details{
+			height: 100%;
+			list-style-type: none;
+			padding: 20px;
+		}
 
 		img {
 			@include grayscale(1);
@@ -476,7 +484,7 @@ section.price {
 		&:hover img {
 			@include grayscale(0.1);
 			cursor: pointer;
-		}	
+		}
 
 		&.no-padding-top {
 			padding-top: 0px;
@@ -489,7 +497,7 @@ section.price {
 			}
 		}
 
-		
+
 		&.right-shadow {
 			box-shadow: 1px 0px 0px 0px rgba(0,0,0,0.1);
 		}
@@ -497,7 +505,7 @@ section.price {
 		.price {
 			font-size: 2.75rem;
 			font-weight: 700;
-			padding: 0;
+			padding: 10px 0;
 			color: $primaryColor;
 			sup {
 				font-size: 1.5rem;
@@ -508,6 +516,7 @@ section.price {
 				font-size: 1rem;
 				color: $primaryColor;
 				font-weight: normal;
+				display: block;
 			}
 		}
 
@@ -517,10 +526,11 @@ section.price {
 			padding: 20px 0;
 			font-weight: 700;
 			font-size: 1.1875rem;
+			text-align: center;
 		}
 
 		.description {
-			padding: 20px;
+			padding: 20px 0;
 			color: $textColor;
 		}
 
@@ -603,7 +613,7 @@ section.blog-posts {
 				@include grayscale(0);
 			}
 		}
-		
+
 		.entry-meta {
 			margin: 15px 0 10px 0;
 
@@ -667,24 +677,6 @@ section.blog-posts {
 	&.gray {
 		background: $grayColor;
 	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
 }
 
 
@@ -698,7 +690,7 @@ section.schedule {
 		background: transparent;
 		border: none;
 	}
-	
+
 	//* ===== Tabs Styles ===== */
 	.tabs-title {
 		a {
@@ -721,16 +713,16 @@ section.schedule {
 				margin-right: 0;
 				border-top-right-radius: 0px;
 				border-bottom-right-radius: 0px;
-				
+
 				.day-number {
 					color: #ba007d;
 				}
 
-				.date { 
-					color: $textColor; 
+				.date {
+					color: $textColor;
 				}
 
-				
+
 			}
 
 			@include breakpoint(medium down) {
@@ -796,7 +788,7 @@ section.schedule {
 					margin-right: 10px;
 					border-top-right-radius: 5px;
 					border-bottom-right-radius: 5px;
-					
+
 					@include breakpoint(medium down) {
 						border-radius: 5px;
 					}
@@ -822,13 +814,13 @@ section.schedule {
 	//* ===== Accordeon item ===== */
 	.accordion-item {
 		border-bottom: 1px solid $borderColor;
-		
+
 		.accordion-title {
-			border: none; 
+			border: none;
 			margin: 10px 0;
 			padding: 0;
 			background: transparent;
-			
+
 			&:hover {
 				background: #fff;
 			}
@@ -864,7 +856,7 @@ section.schedule {
 				text-align: right;
 				margin-top: 6px;
 				color: $textColor;
-				
+
 				@include breakpoint(small only) {
 					width: 100%;
 					text-align: left;
@@ -890,21 +882,21 @@ section.schedule {
 			.avatar {
 				border: none;
 				margin-top: 20px;
-				margin-right: 20px;				
+				margin-right: 20px;
 				img{
-					width: 64px; 
+					width: 64px;
 					height: auto;
 					border-radius: 64px;
 					border: 2px solid $borderColor;
 
 					@include breakpoint(small only) {
 						width: 48px;
-					}	
+					}
 				}
 			}
 		}
 	}
-	
+
 	//* ===== Text Gradients for Schedule titles ===== */
 	&.gradient-a .accordion .accordion-title {
 		&[aria-selected='true'] .title{
@@ -956,7 +948,7 @@ section.testimonials {
 					.client {
 						font-size: 0.9375rem;
 						font-weight: 600;
-						font-family: $FontPrimary;
+						font-family: $FontSecondary;
 					}
 					.testimonial {
 						p {
@@ -1072,7 +1064,7 @@ section.team {
 .team-container {
 	.item {
 		position: relative;
-		
+
 		a img{
 			width: 100%;
 			height: auto;
@@ -1331,7 +1323,7 @@ section.venue{
 
 			p {
 				color: #fff;
-				a{ 
+				a{
 					color: #fff;
 					text-decoration: underline;
 				}
@@ -1529,7 +1521,7 @@ section.features {
 		}
 
 	}
-	
+
 	//* ===== Last Image box ===== */
 	.last {
 		.main-image-right {margin-bottom: 40px;}
@@ -1548,7 +1540,7 @@ section.features {
 
 	.icon-holder {
 		i, object {
-			width: 75px; 
+			width: 75px;
 			height: 75px;
 			text-align: center;
 			font-size: 2rem;
@@ -1559,7 +1551,7 @@ section.features {
 		@include breakpoint(medium down) {
 			i {
 				font-size: 1.25rem;
-				width: 45px; 
+				width: 45px;
 				height: 45px;
 				padding-top: 15px;
 			}
@@ -1574,4 +1566,4 @@ section.features {
 			}
 		}
 	}
-}  
+}
