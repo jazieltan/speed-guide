@@ -64,8 +64,7 @@ section {
 		}
 	}
 
-	&.red {
-		background: $primaryColor;
+	&.gradient-red {
 		color: $whiteColor;
 		p{
 			color: $whiteColor;
@@ -246,30 +245,9 @@ section.book-appointment {
 		background: #f9f9f9;
 	}
 	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
-	&.gray {
-		background: $grayColor;
-	}
+		background: $grayColor;}
 	.contact-info{
+		margin-top: 2rem;
 		h4:after{
 				margin: 9px 0;
 				width: 30%;
@@ -384,6 +362,7 @@ section.action-bar {
 
 	h1 {
 		color: $whiteColor;
+		font-family: $FontSecondary;
 	}
 	&.white {
 		h1 {
@@ -439,8 +418,10 @@ section.services {
 			 margin: 20px  0 0 0;
 		}
 	}
-	.feat{
-		padding-top: 4rem;
+	@include breakpoint(medium){
+		.feat{
+			padding-top: 3rem;
+		}
 	}
 }
 
@@ -929,7 +910,6 @@ section.schedule {
 /*========================================================================== */
 
 section.testimonials {
-
 	.owl-carousel-testimonials {
 		.item {
 			margin: 15px;
@@ -943,7 +923,7 @@ section.testimonials {
 					border-radius: 100%;
 				}
 				.testimonial-body {
-					width: 75%;
+					width: 100%;
 					padding-left: 20px;
 					.client {
 						font-size: 0.9375rem;
@@ -1540,8 +1520,6 @@ section.features {
 
 	.icon-holder {
 		i, object {
-			width: 75px;
-			height: 75px;
 			text-align: center;
 			font-size: 2rem;
 			padding-top: 25px;

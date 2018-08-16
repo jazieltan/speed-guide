@@ -8,3 +8,4 @@
 //= ../../node_modules/owl.carousel/dist/owl.carousel.min.js
 //= ../../node_modules/headroom.js/dist/headroom.min.js
 //= ../../node_modules/headroom.js/dist/jQuery.headroom.min.js
+//= ../../node_modules/aos/dist/aos.js

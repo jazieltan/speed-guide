@@ -42,6 +42,7 @@
     "waypoints": "^4.0.1"
   },
   "dependencies": {
+    "aos": "^2.3.0",
     "clean-css": "^4.1.7",
     "del": "^3.0.0",
     "font-awesome": "^4.7.0",
@@ -63,9 +64,9 @@
     "minimatch": "^3.0.4",
     "motion-ui": "^1.2.3",
     "owl.carousel": "^2.2.0",
+    "parallax-js": "^3.1.0",
     "postcss": "^6.0.9",
-    "through2": "^2.0.3",
-    "waypoints": "^4.0.1"
+    "through2": "^2.0.3"
   },
   "main": "index.js"
 }
